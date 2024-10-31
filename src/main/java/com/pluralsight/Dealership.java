@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Dealership {
 
-private String name;
-private String address;
-private String phone;
-private ArrayList<Vehicle> inventory;
+    private String name;
+    private String address;
+    private String phone;
+    private ArrayList<Vehicle> inventory;
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
@@ -41,11 +41,11 @@ private ArrayList<Vehicle> inventory;
         this.phone = phone;
     }
 
-    public List<Vehicle> getVehiclesByPrice(Double min, Double max) {
+    public List<Vehicle> getVehiclesByPrice(double min, double max) {
         List<Vehicle> vehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if ((min == null || vehicle.getPrice() >= min) && (max == null || vehicle.getPrice() <= max)) {
+            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
                 vehicles.add(vehicle);
             }
         }
@@ -86,11 +86,11 @@ private ArrayList<Vehicle> inventory;
         return vehicles;
     }
 
-    public List<Vehicle> getVehiclesByMileage(Double min, Double max) {
+    public List<Vehicle> getVehiclesByMileage(double min, double max) {
         List<Vehicle> vehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if ((max == null || vehicle.getOdometer() <= max) && (min == null || vehicle.getOdometer() >= min)) {
+            if (vehicle.getOdometer() <= max && vehicle.getOdometer() >= min) {
                 vehicles.add(vehicle);
             }
         }
@@ -106,6 +106,15 @@ private ArrayList<Vehicle> inventory;
             }
         }
         return vehicles;
+    }
+
+    public Vehicle getVehiclesByVin(int vin) {
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVin() == vin) {
+                return vehicle;
+            }
+        }
+        return null;
     }
 
     public List<Vehicle> getAllVehicles() {
